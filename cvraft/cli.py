@@ -27,7 +27,7 @@ def build(file_path: Path, prettify: bool = typer.Option(default=False)):
     typer.echo(f"Building your CV from {file_path.absolute()}")
     cv = frontmatter.load(file_path.absolute())
     template = env.get_template("cv.html")
-    md = markdown.markdown(cv.content, extensions=["attr_list", 'cvraft.extension'])
+    md = markdown.markdown(cv.content, extensions=["attr_list", 'tables', 'cvraft.extension'])
     # Create build directory
     build_dir = Path(".") / BUILD_DIR
     build_dir.mkdir(exist_ok=True)

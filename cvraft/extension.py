@@ -66,6 +66,9 @@ def is_header(tag: str):
 class SectionDataProcessor(Treeprocessor):
     SECTION_ID = "data-section-id"
     SECTION_CLASS = "data-section-class"
+    PERIOD = "data-period"
+    LOCATION = "data-location"
+    DATE = "data-date"
 
     def run(self, root):
         for section in root.iter("section"):
@@ -74,15 +77,36 @@ class SectionDataProcessor(Treeprocessor):
     def _move_section_data_from_heading(self, section):
         for child in section:
             if is_header(child.tag):
+                position = 1
                 if self.SECTION_ID in child.attrib:
                     section.attrib["id"] = child.attrib[self.SECTION_ID]
                     child.attrib.pop(self.SECTION_ID)
                 if self.SECTION_CLASS in child.attrib:
                     section.attrib["class"] = child.attrib[self.SECTION_CLASS]
                     child.attrib.pop(self.SECTION_CLASS)
+                if self.PERIOD in child.attrib:
+                    el = self._create_span(child.attrib[self.PERIOD], "period")
+                    section.insert(position, el)
+                    position += 1
+                    child.attrib.pop(self.PERIOD)
+                if self.DATE in child.attrib:
+                    el = self._create_span(child.attrib[self.DATE], "date")
+                    section.insert(position, el)
+                    position += 1
+                    child.attrib.pop(self.DATE)
+                if self.LOCATION in child.attrib:
+                    el = self._create_span(child.attrib[self.LOCATION], "location")
+                    section.insert(position, el)
+                    position += 1
+                    child.attrib.pop(self.LOCATION)
             elif child.tag == "section":
                 self._move_section_data_from_heading(child)
 
+    def _create_span(self, value, classes = None):
+        el = etree.Element("span")
+        el.attrib["class"] = classes
+        el.text = value
+        return el
 
 class CvraftExtension(Extension):
     def extendMarkdown(self, md: Markdown) -> None:
