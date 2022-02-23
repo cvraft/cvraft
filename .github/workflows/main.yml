@@ -39,7 +39,8 @@ jobs:
         poetry build
     - name: Publish to Test PyPI
       run: |
-        poetry publish -p ${{ secrets.TEST_PYPI_API_TOKEN }} -r https://test.pypi.org/legacy/  
+        poetry config repositories.test-pypi https://test.pypi.org/legacy/
+        poetry publish -p ${{ secrets.TEST_PYPI_API_TOKEN }} -r test-pypi  
     #- name: Publish to Test PyPI
     #  uses: pypa/gh-action-pypi-publish@master
     #  with:
