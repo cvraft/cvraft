@@ -16,6 +16,7 @@ beautifulsoup4 = "^4.10.0"
 ipython = "^8.0.1"
 pytest = "^7.0.1"
 black = {version = "^22.1.0", allow-prereleases = true}
+poethepoet = "^0.12.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -23,3 +24,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 cvraft = "cvraft.cli:app"
+
+[tool.poe.tasks]
+test = "pytest"
