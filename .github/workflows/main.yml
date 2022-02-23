@@ -35,7 +35,7 @@ jobs:
       run: poetry run poe test  
     - name: Package
       run: |
-        poetry version $(poetry version -s)+$(git rev-parse --short HEAD)
+        poetry version $(poetry version -s).dev$(git rev-parse --short HEAD)
         poetry build
     - name: Publish to Test PyPI
       run: |
