@@ -9,8 +9,6 @@ from pathlib import Path
 from jinja2 import Environment, PackageLoader, select_autoescape
 from bs4 import BeautifulSoup
 
-from .extension import CvraftExtension
-
 
 BUILD_DIR = "build"
 
@@ -32,7 +30,7 @@ def build(file_path: Path, prettify: bool = typer.Option(default=False)):
     build_dir = Path(".") / BUILD_DIR
     build_dir.mkdir(exist_ok=True)
     with open(build_dir / "index.html", "w") as f:
-        html = template.render(content=md, name=cv["name"]) 
+        html = template.render(content=md, **cv) 
         if prettify:
             html = BeautifulSoup(html, 'html.parser').prettify(formatter='html5')
         f.write(html)
