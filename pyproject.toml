@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cvraft"
 version = "0.1.0"
-description = ""
+description = "Build your CV written in Markdown"
 authors = ["Manh-Ha VU <dev@manhhavu.com>"]
 
 [tool.poetry.dependencies]
