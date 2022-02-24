@@ -3,10 +3,11 @@ name: Development
 on:
   push:
     branches: [ main ]
+    tags-ignore:
+      - 'v*'
   pull_request:
     branches: [ main ]
-  tags-ignore:
-    - 'v*'
+  
 
 jobs:
   build:
