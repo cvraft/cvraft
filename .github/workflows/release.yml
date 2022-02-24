@@ -3,7 +3,9 @@ name: Release
 on:
   push:
     tags:
-      -v*
+      - 'v*'
+  release:
+    types: [published]
 
 jobs:
   build:
