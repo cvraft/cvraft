@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cvraft"
-version = "0.1.1"
+version = "0.1.2"
 description = "Build your CV written in Markdown"
 authors = ["Manh-Ha VU <dev@manhhavu.com>"]
 readme = "README.md"
